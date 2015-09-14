@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Vendor: Pivotal Software, Inc.
-Implementation-Title: person-address
-Implementation-Version: 0.0.1-SNAPSHOT
-Implementation-Vendor-Id: br.com.missaci
-Build-Jdk: 1.6.0_38
-Built-By: Mateus
-Created-By: Maven Integration for Eclipse
-
