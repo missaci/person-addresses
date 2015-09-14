@@ -29,26 +29,55 @@ http://localhost:9000
 
 a aplicação deverá exibir na tela a mensagem: "Up and running!"
 
-###Para pesquisar um CEP
-Exemplo de url para pesquisa de :
-http://localhost:8080/addresses/01001-000 
+###O CRUD
 
-é um exemplo de CEP válido. O retorno será:
+#### Inserção
+
+Para inserção, utilize o método POST do HTTP na URL: http://localhost:9000/personAddresses .
+O conteúdo da requisição deve ser semelhante ao abaixo:
 
     {
-		"cep": "01001001",
-		"street": "Praça da Sé - lado par",
-		"neighborhood": "Sé",
-		"city": "São Paulo",
-		"state": "SP"
-	}
+    	"cep":"01001-001", 
+    	"street":"Rua D", 
+    	"number":"2", 
+    	"city":"São Paulo", 
+    	"state": "SP", 
+    	"neighborhood":"Sé",
+    	"complement": "próximo à praça"
+    }
 
-Caso o CEP pesquisado seja inválido, será retornado o status 412 (Pré-condition failed)
-junto ao conteúdo:
+Bairro (Neighborhood) e Complemento (complement) são opcionais.
+
+#### Atualização
+Para atualização, utilize o método PUT do HTTP na URL: http://localhost:9000/personAddresses .
+O conteúdo da requisição deve ser semelhante ao abaixo:
+
+    {
+    	"id": 1
+    	"cep":"01001-001", 
+    	"street":"Rua D", 
+    	"number":"2", 
+    	"city":"São Paulo", 
+    	"state": "SP", 
+    	"neighborhood":"Sé",
+    	"complement": "próximo à praça"
+    }
+
+Bairro (Neighborhood) e Complemento (complement) são opcionais.
+
+#### Remoção
+Para atualização, utilize o método DELETE do HTTP na URL: http://localhost:9000/personAddresses/{id}, onde {id} deve ser substituído pelo id do elemento a ser deletado.
+Não há conteúdo de requisição para esse caso.
+
+#### Obtenção
+Não há listagem nesse serviço, apenas obtenção de um endereço por id. Para essa função, use o método GET do HTTP na URL: http://localhost:9000/personAddresses/{id}, onde {id} deve ser substituído pelo id do elemento a ser obtido.
+Não há conteúdo de requisição para esse caso.
+
+#### Falhas
+Em caso de falhas, o servidor irá retornar o status 412 (Pré-condition failed) para erros gerados pelo usuário (erros de validação, campos não preenchidos e afins) ou o status 500 para erros internos do servidor.
+O status será acompanhado de uma mensagem semelhante a abaixo:
+
 
 	{
 		"errorMessage": "CEP inválido"
 	}
-
-**Observação:**
-Como a aplicação foi desenvolvida com fins de teste, apenas os CEPs do município de São Paulo estão disponíveis.
